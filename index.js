@@ -12,6 +12,10 @@ app.use(express.urlencoded({
     extended: true
 }))
 
+// app.get('/test', async (req, res) => {
+//     res.json('ok!')
+// })
+
 app.post('/new-message', async (req, res) => {
     const { message } = req.body;
     const messageText = message.text;
@@ -20,10 +24,10 @@ app.post('/new-message', async (req, res) => {
         return res.sendStatus(400)
     }
 
-    let responseText = '';
-    if (/+\d/.test(messageText)) {
-        responseText = 'ok';
-    }
+    let responseText = 'ok';
+    // if (/+\d/.test(messageText)) {
+    //     responseText = 'ok';
+    // }
 
     try {
         await axios.post(TG_API, {
