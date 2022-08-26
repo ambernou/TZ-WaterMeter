@@ -14,7 +14,7 @@
     <button type="submit">send</button>
     </form>
     <script>
-        $("#form").on("submit", function(){
+        $("#form").on("submit", function(e){
             $.ajax({
                 url: 'https://api.telegram.org/bot5415114153:AAHhIDoKtRJ8FNTug3YfAn3mrjOE3Ru4-qM/sendMessage',
                 method: 'post',
@@ -24,6 +24,7 @@
                     $('#message').html(data);
                 }
             });
+            e.preventDefault();
         });
         </script>
 </body>
