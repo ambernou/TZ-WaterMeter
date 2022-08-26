@@ -36,11 +36,18 @@ app.post('/new-message', async (req, res) => {
     if (/\w+|[а-яА_Я]+/.test(messageText)) {
         responseText = 'Ведите номер своего счета, состоящий из пяти цифр:';
     }
+
     if (Number(messageText) === userData.id) {
         responseText = `Номер вашего счета ${userData.id},
         счетчик холодной воды №${userData.coldWater.number}, предыдущие показания ${userData.coldWater.value},
         счетчик горячей воды №${userData.hotWater.number}, предудыщие показания ${userData.hotWater.value}.
-        Введите новые значения в томже порядке через пробел`;
+        Введите новые значения в таком же порядке через пробел`;
+    }
+
+    if (/\d+\s\d+/.test(messageText)) {
+        let values = messageText.match(/\d+\b/g);
+        console.log('new data', values);
+        responseText = 'Новые показания приняты';
     }
 
     try {
