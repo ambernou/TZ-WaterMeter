@@ -33,11 +33,11 @@ app.get('*', (req, res) => {
 
 app.post('/new-message', async (req, res) => {
     const { message } = req.body;
-    const messageText = message.text;
-    const chatId = message.chat.id;
-    if (!messageText || !chatId) {
-        return res.sendStatus(400)
-    }
+    // const messageText = message.text;
+    // const chatId = message.chat.id;
+    // if (!messageText || !chatId) {
+    //     return res.sendStatus(400)
+    // }
 
     let responseText = '';
     if (/\w+|[а-яА_Я]+/.test(messageText)) {
