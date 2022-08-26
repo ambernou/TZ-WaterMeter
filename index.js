@@ -2,6 +2,7 @@ import axios from 'axios';
 import { config } from 'dotenv';
 import express from 'express';
 import path from 'path';
+import bodyParser from 'body-parser';
 
 
 config();
@@ -14,6 +15,9 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(express.static('public'));
+app.use('/form_handler', bodyParser.urlencoded({
+    extended: true
+}))
 
 const userData = {
     id: 12345,
@@ -31,48 +35,52 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-app.post('/new-message', async (req, res) => {
-    const { message } = req.body;
-    // const messageText = message.text;
-    // const chatId = message.chat.id;
-    // if (!messageText || !chatId) {
-    //     return res.sendStatus(400)
-    // }
-
-    let responseText = '';
-    if (/\w+|[а-яА_Я]+/.test(messageText)) {
-        responseText = 'Ведите номер своего счета, состоящий из пяти цифр:';
-    }
-
-    if (Number(messageText) === userData.id) {
-        responseText = `Номер вашего счета: ${userData.id},
-        
-        счетчик холодной воды №${userData.coldWater.number},
-        предыдущие показания: ${userData.coldWater.value},
-        
-        счетчик горячей воды №${userData.hotWater.number},
-        предыдущие показания: ${userData.hotWater.value}.
-        
-        Введите новые показания в таком же порядке через пробел, например "123 456"`;
-    }
-
-    if (/\d+\s\d+/.test(messageText)) {
-        let values = messageText.match(/\d+\b/g);
-        console.log('new data: ', values);
-        responseText = 'Новые показания приняты, спасибо';
-    }
-
-    try {
-        await axios.post(TG_API, {
-            chat_id: chatId,
-            text: responseText
-        })
-        res.send('Done');
-    } catch (e) {
-        console.log(e);
-        res.send(e);
-    }
+app.post('/form_handler', (req, res) => {
+    console.log(req.body);
 });
+
+// app.post('/new-message', async (req, res) => {
+//     const { message } = req.body;
+//     // const messageText = message.text;
+//     // const chatId = message.chat.id;
+//     // if (!messageText || !chatId) {
+//     //     return res.sendStatus(400)
+//     // }
+
+//     let responseText = '';
+//     if (/\w+|[а-яА_Я]+/.test(messageText)) {
+//         responseText = 'Ведите номер своего счета, состоящий из пяти цифр:';
+//     }
+
+//     if (Number(messageText) === userData.id) {
+//         responseText = `Номер вашего счета: ${userData.id},
+        
+//         счетчик холодной воды №${userData.coldWater.number},
+//         предыдущие показания: ${userData.coldWater.value},
+        
+//         счетчик горячей воды №${userData.hotWater.number},
+//         предыдущие показания: ${userData.hotWater.value}.
+        
+//         Введите новые показания в таком же порядке через пробел, например "123 456"`;
+//     }
+
+//     if (/\d+\s\d+/.test(messageText)) {
+//         let values = messageText.match(/\d+\b/g);
+//         console.log('new data: ', values);
+//         responseText = 'Новые показания приняты, спасибо';
+//     }
+
+//     try {
+//         await axios.post(TG_API, {
+//             chat_id: chatId,
+//             text: responseText
+//         })
+//         res.send('Done');
+//     } catch (e) {
+//         console.log(e);
+//         res.send(e);
+//     }
+// });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
