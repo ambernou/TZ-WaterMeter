@@ -38,16 +38,21 @@ app.post('/new-message', async (req, res) => {
     }
 
     if (Number(messageText) === userData.id) {
-        responseText = `Номер вашего счета ${userData.id},
-        счетчик холодной воды №${userData.coldWater.number}, предыдущие показания ${userData.coldWater.value},
-        счетчик горячей воды №${userData.hotWater.number}, предудыщие показания ${userData.hotWater.value}.
-        Введите новые значения в таком же порядке через пробел`;
+        responseText = `Номер вашего счета: ${userData.id},
+        
+        счетчик холодной воды №${userData.coldWater.number},
+        предыдущие показания: ${userData.coldWater.value},
+        
+        счетчик горячей воды №${userData.hotWater.number},
+        предыдущие показания: ${userData.hotWater.value}.
+        
+        Введите новые показания в таком же порядке через пробел, например "123 456"`;
     }
 
     if (/\d+\s\d+/.test(messageText)) {
         let values = messageText.match(/\d+\b/g);
-        console.log('new data', values);
-        responseText = 'Новые показания приняты';
+        console.log('new data: ', values);
+        responseText = 'Новые показания приняты, спасибо';
     }
 
     try {
