@@ -12,9 +12,17 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-// app.get('/test', async (req, res) => {
-//     res.json('ok!')
-// })
+const userData = {
+    id: 12345,
+    coldWater: {
+        number: 24680,
+        value: 447
+    },
+    hotWater: {
+        number: 35791,
+        value: 382
+    }
+}
 
 app.post('/new-message', async (req, res) => {
     const { message } = req.body;
@@ -24,10 +32,16 @@ app.post('/new-message', async (req, res) => {
         return res.sendStatus(400)
     }
 
-    let responseText = 'ok';
-    // if (/+\d/.test(messageText)) {
-    //     responseText = 'ok';
-    // }
+    let responseText = '';
+    if (/\w+|[а-яА_Я]+/.test(messageText)) {
+        responseText = 'Ведите номер своего счета, состоящий из пяти цифр:';
+    }
+    if (Number(messageText) === userData.id) {
+        responseText = `Номер вашего счета ${userData.id},
+        счетчик холодной воды №${userData.coldWater.number}, предыдущие показания ${userData.coldWater.value},
+        счетчик горячей воды №${userData.hotWater.number}, предудыщие показания ${userData.hotWater.value}.
+        Введите новые значения в томже порядке через пробел`;
+    }
 
     try {
         await axios.post(TG_API, {
