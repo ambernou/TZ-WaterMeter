@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { config } from 'dotenv';
 import express from 'express';
+import path from 'path';
+
 
 config();
 const app = express();
@@ -11,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }))
+app.use(express.static('public'));
 
 const userData = {
     id: 12345,
@@ -23,6 +26,10 @@ const userData = {
         value: 382
     }
 }
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 app.post('/new-message', async (req, res) => {
     const { message } = req.body;
