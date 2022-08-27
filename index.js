@@ -38,7 +38,7 @@ app.get('*', (req, res) => {
 app.post('/form_handler', (req, res) => {
     const number = req.body.number;
     console.log(req.body);
-    res.send(`Your number: `, ${number});
+    res.send(`Your number: , ${number}`);
 });
 
 // app.post('/new-message', async (req, res) => {
