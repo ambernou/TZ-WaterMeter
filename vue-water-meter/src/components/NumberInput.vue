@@ -19,8 +19,8 @@ export default {
       } else {
         this.errorNotNumber = false
         this.errorNumberNotExist = false
-        // axios.post('/number', this.form)
-        axios.post('http://localhost:3000/number', this.form)
+        axios.post('/number', this.form)
+        // axios.post('http://localhost:3000/number', this.form)
         .then(response => {
           console.log('answer: ', response.data)
           this.$store.commit('setNewReq', false)
