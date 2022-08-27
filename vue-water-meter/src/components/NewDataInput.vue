@@ -15,7 +15,10 @@ export default {
   methods: {
     form_handler(){
       axios.post('/newdata', this.form)
-      .then(response => console.log('answer: ', response.data))
+      .then(response => {
+        console.log('answer: ', response.data)
+        this.$store.commit('setGetData', false)
+        })
       .catch(error => console.log('error: ', error))
     }
   }
