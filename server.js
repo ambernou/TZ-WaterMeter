@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
+app.use(express.json());
 app.use('/', serveStatic(path.join(__dirname, 'vue-water-meter', 'dist')))
 app.use('/number', bodyParser.urlencoded({
     extended: true
