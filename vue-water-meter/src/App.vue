@@ -24,7 +24,7 @@ export default {
 
 <template>
   <div>
-    <NumberInputComp  v-if="newReq"/>
+    <NumberInputComp v-if="newReq"/>
     <NewDataInputComp v-if="getData" :userData="userData"/>
   </div>
 </template>

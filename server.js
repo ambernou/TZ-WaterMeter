@@ -25,6 +25,9 @@ app.use('/', serveStatic(path.join(__dirname, 'vue-water-meter', 'dist')))
 app.use('/number', bodyParser.urlencoded({
     extended: true
 }))
+app.use('/newdata', bodyParser.urlencoded({
+    extended: true
+}))
 
 app.post('/number', (req, res) => {
     // const number = req.body.number;
@@ -34,7 +37,7 @@ app.post('/number', (req, res) => {
 
 app.post('/newdata', (req, res) => {
     const data = req.body.number;
-    console.log(req.body);
+    console.log(data);
     res.send(data);
 });
 
