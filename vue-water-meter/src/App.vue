@@ -25,9 +25,9 @@ export default {
 
 <template>
   <div>
-    <NumberInputComp v-if="newReq"/>
-    <NewDataInputComp v-if="getData" :userData="userData"/>
-    <SuccessfulMessageComp v-if="(newReq == false && getData == false)"/>
+    <NumberInputComp v-show="newReq"/>
+    <NewDataInputComp v-show="getData" :userData="userData"/>
+    <SuccessfulMessageComp v-show="(newReq == false && getData == false)"/>
   </div>
 </template>
 
