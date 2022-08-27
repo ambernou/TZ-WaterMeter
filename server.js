@@ -26,8 +26,8 @@ app.use('/', bodyParser.urlencoded({
 }))
 
 app.post('/number', (req, res) => {
-    const number = Number(req.body.number);
-    if (number == userData.id) {
+    const number = req.body.number;
+    if (Number(number) == userData.id) {
         console.log(req.body);
         res.send(userData);
     } else {
