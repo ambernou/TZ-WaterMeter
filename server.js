@@ -4,9 +4,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-// const host = '127.0.0.1'
-// const port = '5173'
-
 const userData = {
     id: 12345,
     coldWater: {
@@ -27,14 +24,16 @@ app.use('/', serveStatic(path.join(__dirname, 'vue-water-meter', 'dist')))
 app.use('/', bodyParser.urlencoded({
     extended: true
 }))
-// app.use('/newdata', bodyParser.urlencoded({
-//     extended: true
-// }))
 
 app.post('/number', (req, res) => {
-    // const number = req.body.number;
-    console.log(req.body);
-    res.send(userData);
+    const number = Number(req.body.number);
+    if (number == userData.id) {
+        console.log(req.body);
+        res.send(userData);
+    } else {
+        console.log('number error');
+        res.status(400).send('Bad Request');
+    }
 });
 
 app.post('/newdata', (req, res) => {
