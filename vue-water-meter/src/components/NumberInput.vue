@@ -13,7 +13,8 @@ export default {
   methods: {
     form_handler(){
       axios.post('/number', this.form)
-      .then((res) => console.log('ответ'))
+      .then(response => console.log(response.data))
+      .catch(error => console.log(error))
     }
   }
 }

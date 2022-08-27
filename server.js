@@ -11,9 +11,9 @@ app.use('/number', bodyParser.urlencoded({
 }))
 
 app.post('/number', (req, res) => {
-    const number = req.body.number;
+    const number = req.body;
     console.log(req.body);
-    //res.send(`Your number: , ${number}`);
+    res.send(`Your number: , ${number}`);
 });
 
 const port = process.env.PORT || 3000
