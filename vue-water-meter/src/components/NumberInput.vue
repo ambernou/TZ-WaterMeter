@@ -7,14 +7,18 @@ export default {
     return{
       form: {
         number: ''
-      }
+      },
+      userData: {}
     }
   },
   methods: {
     form_handler(){
       axios.post('/number', this.form)
-      .then(response => console.log(response.data))
-      .catch(error => console.log(error))
+      .then(response => {
+        console.log('answer: ', response.data)
+        this.userData = response.data
+      })
+      .catch(error => console.log('error: ', error))
     }
   }
 }
