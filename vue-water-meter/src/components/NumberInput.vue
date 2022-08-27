@@ -13,6 +13,7 @@ export default {
   methods: {
     form_handler(){
       axios.post('/number', this.form)
+      // axios.post('http://localhost:3000/number', this.form)
       .then(response => {
         console.log('answer: ', response.data)
         this.$store.commit('setNewReq', false)
@@ -39,5 +40,11 @@ export default {
 </template>
 
 <style scoped>
+input{
+  transform: scale(2) translateX(45px) translateY(10px);
+}
 
+button{
+  transform: scale(2) translateX(23px) translateY(24px);
+}
 </style>

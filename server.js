@@ -21,7 +21,7 @@ const userData = {
 
 const app = express()
 
-//app.use(cors())
+// app.use(cors())
 app.use(express.json());
 app.use('/', serveStatic(path.join(__dirname, 'vue-water-meter', 'dist')))
 app.use('/', bodyParser.urlencoded({
