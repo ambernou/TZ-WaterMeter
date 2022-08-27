@@ -33,9 +33,9 @@ app.post('/number', (req, res) => {
 });
 
 app.post('/newdata', (req, res) => {
-    // const number = req.body.number;
+    const data = req.body.number;
     console.log(req.body);
-    //res.send(userData);
+    res.send(data);
 });
 
 
