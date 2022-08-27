@@ -7,8 +7,7 @@ export default {
     return{
       form: {
         number: ''
-      },
-      userData: {}
+      }
     }
   },
   methods: {
@@ -16,7 +15,9 @@ export default {
       axios.post('/number', this.form)
       .then(response => {
         console.log('answer: ', response.data)
-        this.userData = response.data
+        this.$store.commit('setNewReq', false)
+        this.$store.commit('setGetData', true)
+        this.$store.commit('setNewUserData', response.data)
       })
       .catch(error => console.log('error: ', error))
     }

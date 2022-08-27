@@ -32,6 +32,13 @@ app.post('/number', (req, res) => {
     res.send(userData);
 });
 
+app.post('/newdata', (req, res) => {
+    // const number = req.body.number;
+    console.log(req.body);
+    //res.send(userData);
+});
+
+
 const port = process.env.PORT || 3000
 
 app.listen(port)
