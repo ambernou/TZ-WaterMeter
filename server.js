@@ -12,7 +12,7 @@ app.use('/number', bodyParser.urlencoded({
 }))
 
 app.post('/number', (req, res) => {
-    const number = req.body.form.number;
+    const number = req.body.number;
     console.log(req.body);
     res.send(`Your number: ${number}`);
 });
