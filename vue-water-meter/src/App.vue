@@ -1,10 +1,11 @@
 <script>
 import NumberInputComp from './components/NumberInput.vue';
 import NewDataInputComp from './components/NewDataInput.vue';
+import SuccessfulMessageComp from './components/SuccessfulMessage.vue';
 
 export default {
   name: 'App',
-  components: { NumberInputComp, NewDataInputComp },
+  components: { NumberInputComp, NewDataInputComp, SuccessfulMessageComp },
   data() {
     return {}
   },
@@ -26,6 +27,7 @@ export default {
   <div>
     <NumberInputComp v-if="newReq"/>
     <NewDataInputComp v-if="getData" :userData="userData"/>
+    <SuccessfulMessageComp v-if="(newReq == false && getData == false)"/>
   </div>
 </template>
 
