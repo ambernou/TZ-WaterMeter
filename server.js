@@ -6,11 +6,11 @@ const bodyParser = require('body-parser')
 const app = express()
 
 app.use('/', serveStatic(path.join(__dirname, 'vue-water-meter', 'dist')))
-app.use('/form_handler', bodyParser.urlencoded({
+app.use('/number', bodyParser.urlencoded({
     extended: true
 }))
 
-app.post('/form_handler', (req, res) => {
+app.post('/number', (req, res) => {
     const number = req.body.number;
     console.log(req.body);
     //res.send(`Your number: , ${number}`);
