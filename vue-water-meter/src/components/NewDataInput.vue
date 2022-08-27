@@ -21,8 +21,8 @@ export default {
         this.errorMessage = 'Введите числовые значения!'
       } else {
         this.error = false
-      // axios.post('/newdata', this.form)
-      axios.post('http://localhost:3000/newdata', this.form)
+      axios.post('/newdata', this.form)
+      // axios.post('http://localhost:3000/newdata', this.form)
       .then(response => {
         console.log('answer: ', response.data)
         this.$store.commit('setGetData', false)
