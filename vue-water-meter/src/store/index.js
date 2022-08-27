@@ -8,7 +8,7 @@ const store = createStore({
     },
     mutations: {
         setNewReq(state, payload) {
-            state.userData = payload
+            state.newReq = payload
         },
         setNewUserData(state, payload) {
             state.userData = payload
