@@ -48,8 +48,8 @@ export default {
       <button>Отправить</button>
     </form>
     <h4>Рабочий номер для тестирования: 12345</h4>
-    <h3 v-if="errorNotNumber">Введите номер своего счета, состоящий только из цифр!</h3>
-    <h3 v-if="errorNumberNotExist">Номер не найден</h3>
+    <h3 v-show="errorNotNumber">Введите номер своего счета, состоящий только из цифр!</h3>
+    <h3 v-show="errorNumberNotExist">Номер не найден</h3>
   </div>
 </template>
 

@@ -51,7 +51,7 @@ export default {
       </div>
       <button>Отправить текущие показания</button>
     </form>
-    <h3 v-if="error">{{ this.errorMessage }}</h3>
+    <h3 v-show="error">{{ this.errorMessage }}</h3>
   </div>
 </template>
 
