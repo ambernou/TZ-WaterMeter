@@ -16,6 +16,7 @@ export default {
     form_handler(){
       if (/\D+/.test(this.form.number)) {
         this.errorNotNumber = true
+        this.errorNumberNotExist = false
       } else {
         this.errorNotNumber = false
         this.errorNumberNotExist = false
